@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const Product = require("./models/product.model");
+const productRoute = require("./routes/product.route.js");
 dotenv.config();
 
 const app = express();
@@ -11,18 +11,12 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", function (req, res) {
-  res.send("Hello World!");
-});
+// Routes
+app.use("/api", productRoute);
 
-app.post("/api/products", async function async(req, res) {
-  try {
-    const product = await Product.create(req.body);
-    res.status(200).json(product);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: err.message });
-  }
+// home route
+app.get("/", function (req, res) {
+  res.send("NodeJS CRUD App");
 });
 
 // MongoDB connection
