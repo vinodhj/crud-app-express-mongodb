@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CORS Test</title>
+  <script>
+    async function testCORS() {
+      try {
+        let response = await fetch('http://localhost:3002/api/delete-product/668543ead815c179083a6c46', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+        let data = await response.json();
+        console.log('Response:', data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>CORS Test</h1>
+  <button onclick="testCORS()">Test DELETE Request</button>
+</body>
+</html>
