@@ -26,6 +26,7 @@ const corsOptions = {
 
 // middleware
 app.use(cors(corsOptions));
+// app.options('*', cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -35,13 +36,6 @@ app.use("/api", productRoute);
 // home route
 app.get("/", function (req, res) {
   res.send("NodeJS CRUD App");
-});
-
-app.get("/cors-test", function (req, res) {
-  res.send("CORS Test");
-  //res.send(__dirname + "/cors-test.html");
-  console.log("dir", __dirname + "/cors-test.html");
-  //res.sendFile(__dirname + "/cors-test.html");
 });
 
 // MongoDB connection
